@@ -1,0 +1,86 @@
+#include <stdio.h>
+
+int stack[100],n,top,x,c,val;
+void push();
+void pop();
+void display();
+int main() {
+    top=-1;
+    printf("\nEnter size of stack\n");
+	scanf("%d",&n);
+    do{
+        printf("\nEnter a choice\n");
+        scanf("%d",&x);
+        switch(x)
+        {
+            case 1:
+            {
+                push();
+                break;
+            }
+            case 2:
+            {
+                pop();
+                break;
+            }
+            case 3:
+            {
+                display();
+                break;
+            }
+            case 4:
+            {
+                printf("\nEXIT POINT\n");
+                break;
+            }
+            default:
+            {
+             printf("\nPlease Enter a Valid Choice\n");
+            }
+        }
+    }while(c!=4);
+    return 0;
+    }
+void push()
+{
+
+    if(top==n-1)
+    {
+        printf("\nOVERFLOW");
+    }
+    else
+    {
+        printf("\nEnter a value to be pushed\n");
+        scanf("%d",&x);
+        top=top+1;
+        stack[top]=x;
+
+    }
+}
+void pop()
+{
+    if(top==-1)
+    {
+        printf("\nUNDERFLOW");
+    }
+    else
+    {
+     val=stack[top];
+     top--;
+    }
+}
+void display()
+{
+    if(top==-1)
+    {
+        printf("The stack is empty");
+    }
+    else
+    {
+        for(int i=0;i<=top;i++)
+        {
+            printf("%d",stack[i]);
+        }
+        printf("\nPress next Choice\n");
+    }
+}
