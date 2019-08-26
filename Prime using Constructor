@@ -1,0 +1,32 @@
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+class prime {
+    int n;
+    prime()
+    {
+        n=0;
+    }
+    prime(int x)
+    {
+        n=x;
+    }
+    void display()
+    {
+        int c=0;
+        for(int i=1;i<=n;i++)
+        {
+            if(n%i==0)c++;
+        }
+        if(c==2)System.out.println("Prime");
+        else
+            System.out.println("Not Prime");
+    }
+    public static void main(String[] args ) {
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        prime ob1=new prime(a);
+        ob1.display();
+    }
+}
