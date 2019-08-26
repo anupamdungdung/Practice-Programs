@@ -1,0 +1,19 @@
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+class GFG {
+	public static void main (String[] args) {
+		int n,sum=0,i=1;
+		Scanner sc=new Scanner(System.in);
+		n=sc.nextInt();
+		do
+		{
+		    if(i%2!=0)sum=sum+i;
+		    i++;
+		    
+		}while(i<=n);
+		System.out.println("Sum="+sum);
+	    
+	}
+}
