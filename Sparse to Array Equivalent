@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+int main() {
+	int m,n,c1=0,c2=0;
+	scanf("%d %d",&m,&n);
+	int a[m][n];
+	for(int i=0;i<m;i++)
+	{
+	    for(int j=0;j<n;j++)
+	    {
+	        
+	        scanf("%d",&a[i][j]);
+	    }
+	}
+	for(int i=0;i<m;i++)
+	{
+	    for(int j=0;j<n;j++)
+	    {
+	        if(a[i][j]!=0)
+	        c1++;
+	        }
+	}
+	int ar[c1][3];
+	ar[0][0]=m;
+	ar[0][1]=n;
+	ar[0][2]=c1;
+	int k=1;
+	for(int i=0;i<m;i++)
+	{
+	    for(int j=0;j<n;j++)
+	   {
+	        if(a[i][j]!=0)
+	        {
+	        ar[k][0]=i;
+	        ar[k][1]=j;
+	        ar[k][2]=a[i][j];
+	        k++;
+	    }
+	   
+	}
+	
+	}
+	
+	for(int i=0;i<c1+1;i++)
+	{
+	    for(int j=0;j<3;j++)
+	    {
+	        printf("%d ",ar[i][j]);
+	    }
+	    printf("\n");
+	}
+	
+	return 0;
+}
