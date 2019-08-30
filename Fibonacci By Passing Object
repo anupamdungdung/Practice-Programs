@@ -1,0 +1,36 @@
+/*package whatever //do not write package name here */
+import java.util.*;
+import java.io.*;
+
+class fib {
+    
+        int n;
+        fib()
+        {
+            n=0;
+        }
+        fib(int x)
+    {
+        n=x;
+    }
+    static void display(fib ob1)
+    {
+        int a=0,b=1,c=0;
+        System.out.println(a);
+        System.out.println(b);
+        for(int i=2;i<ob1.n;i++)
+        {
+            c=a+b;
+            a=b;
+            b=c;
+            System.out.println(c);
+        }
+    }
+    
+	public static void main (String[] args) {
+	    Scanner sc=new Scanner(System.in);
+	    int a=sc.nextInt();
+		fib ob=new fib(a);
+		display(ob);
+	}
+}
