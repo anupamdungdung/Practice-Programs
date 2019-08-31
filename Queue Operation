@@ -1,0 +1,92 @@
+#include <stdio.h>
+
+int q[100],n,front,rear,x,c,val;
+void push();
+void pop();
+void display();
+int main() {
+    front=rear=0;;
+    printf("\nEnter size of queue\n");
+	scanf("%d",&n);
+    do{
+        printf("\nEnter a choice\n");
+        scanf("%d",&c);
+        switch(c)
+        {
+            case 1:
+            {
+                push();
+                break;
+            }
+            case 2:
+            {
+                pop();
+                break;
+            }
+            case 3:
+            {
+                display();
+                break;
+            }
+            case 4:
+            {
+                printf("\nEXIT POINT\n");
+                break;
+            }
+            default:
+            {
+             printf("\nPlease Enter a Valid Choice\n");
+            }
+        }
+    }while(c!=4);
+    return 0;
+    }
+void push()
+{
+
+    if(rear==n)
+    {
+        printf("\nOVERFLOW");
+    }
+    else
+    {
+		printf("\nEnter a value to be pushed\n");
+        scanf("%d",&x);
+        q[rear]=x;
+        rear++;
+
+    }
+}
+void pop()
+{
+    if(front==0 && rear==0)
+    {
+        printf("\nUNDERFLOW");
+    }
+    else
+    {
+     val=q[front];
+     printf("\nThe value that is being deleted=%d",val);
+     front++;
+     if(front==rear)
+     {
+         front=0;
+         rear=0;
+     }
+    }
+}
+void display()
+{
+    if(front==0 && rear==0)
+    {
+        printf("The queue is empty");
+    }
+    else
+    {
+        for(int i=front;i<rear;i++)
+        {
+            printf("%d",q[i]);
+        }
+        printf("\nPress next Choice\n");
+    }
+}
