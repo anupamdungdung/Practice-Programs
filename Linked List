@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int info;
+    struct node *link;
+}*start=NULL;
+struct node *createNode()
+{
+ struct node *newnode;
+ newnode=(struct node*)malloc(sizeof(struct node));
+ return(newnode);
+}
+void main()
+{
+    int flag=1;
+    struct node *temp1,*temp2;
+    do{
+        temp1=createNode();
+    printf("Enter the value\n");
+    scanf("%d",&temp1->info);
+    temp1->link=NULL;
+    if(start==NULL)
+    {
+        start=temp1;
+        temp2=temp1;
+    }
+    else
+    {
+        temp2->link=temp1;
+        temp2=temp1;
+    }
+    printf("Enter choice\n");
+    }while(flag!=0);
+    temp2->link=NULL;
+    if(start==NULL)
+    {
+        start=temp1;
+    }
+    else
+        {
+
+            while(temp1->link!=NULL)
+            {
+                printf("%d",temp1->info);
+                temp1=temp1->link;
+            }
+        }
+    }
