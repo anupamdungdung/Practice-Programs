@@ -1,0 +1,83 @@
+import java.util.*;
+class College {
+
+    College()
+    {
+
+    }
+    void display()
+    {
+        System.out.println("CET COLLEGE");
+    }
+
+}
+class Student extends College
+{
+    Scanner sc=new Scanner(System.in);
+    String name,address;long contact,regn;
+    Student(long regn)
+    {
+        this.regn=regn;
+    }
+    void input()
+    {
+        System.out.println("Enter name of student:");
+        name=sc.nextLine();
+        System.out.println("Enter name of address:");
+        address=sc.nextLine();
+        System.out.println("Contact No:");
+        contact=sc.nextLong();
+    }
+    void display() {
+        System.out.println("Student Details");
+        System.out.println("Name=" + name);
+        System.out.println("Address=" + address);
+        System.out.println("Contact=" + contact);
+        System.out.println("Registration="+regn);
+        System.out.println();
+    }
+}
+class Faculty extends College {
+    String name, address, department;
+    long contact, regn;
+    Scanner sc=new Scanner(System.in);
+    Faculty(long regn, String department)
+    {
+        this.regn = regn;
+        this.department = department;
+    }
+
+    void input() {
+        System.out.println("Enter name of faculty:");
+        name = sc.nextLine();
+        System.out.println("Enter name of address:");
+        address = sc.nextLine();
+        System.out.println("Enter contact no:");
+        contact = sc.nextLong();
+    }
+
+    void display()
+    {
+        System.out.println("Faculty Details");
+        System.out.println("Name=" + name);
+        System.out.println("Address=" + address);
+        System.out.println("Contact=" + contact);
+        System.out.println("Registration=" + regn);
+        System.out.println("Department=" + department);
+        System.out.println();
+    }
+}
+public class DriverProgram
+{
+    public static void main(String[] args)
+    {   College ob1=new College();
+
+        Student ob2=new Student(1801106100);
+        Faculty ob3=new Faculty(1201106100,"Information Technology");
+        ob2.input();
+        ob3.input();
+        ob1.display();
+        ob2.display();
+        ob3.display();
+    }
+}
