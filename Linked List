@@ -1,49 +1,86 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<conio.h>
+int x;
 struct node
 {
-    int info;
-    struct node *link;
-}*start=NULL;
-struct node *createNode()
-{
- struct node *newnode;
- newnode=(struct node*)malloc(sizeof(struct node));
- return(newnode);
-}
-void main()
-{
-    int flag=1;
-    struct node *temp1,*temp2;
-    do{
-        temp1=createNode();
-    printf("Enter the value\n");
-    scanf("%d",&temp1->info);
-    temp1->link=NULL;
-    if(start==NULL)
-    {
-        start=temp1;
-        temp2=temp1;
-    }
-    else
-    {
-        temp2->link=temp1;
-        temp2=temp1;
-    }
-    printf("Enter choice\n");
-    }while(flag!=0);
-    temp2->link=NULL;
-    if(start==NULL)
-    {
-        start=temp1;
-    }
-    else
-        {
 
-            while(temp1->link!=NULL)
+    int data;
+    struct  node *next;
+}*start=NULL;
+
+struct node *createnode()
+{
+
+struct node *newnode;
+newnode=(struct node *)malloc(sizeof(struct node));
+return newnode;
+}
+struct node *temp1,*temp2;
+void insertNodeAtEnding()
+{
+
+
+        temp1=createnode();
+        printf("\nEnter the data\n");
+        scanf("%d",&temp1->data);
+        temp1->next=NULL;
+        if(start==NULL)
+        {
+            start=temp1;
+        }
+        else
+        {
+            temp2=start;
+            while(temp2->next!=NULL)
             {
-                printf("%d",temp1->info);
-                temp1=temp1->link;
+                temp2=temp2->next;
+
             }
+            temp2->next=temp1;//temp1 always stores the address of new node
         }
     }
+    void Traverse()
+    {
+
+        temp2=start;
+
+            while(temp2!=NULL)
+            {
+                printf("%d ",temp2->data);
+                temp2=temp2->next;
+            }
+
+    }
+    void main()
+    {
+
+        do
+        {
+            printf("\nEnter your choice\n");
+            scanf("%d",&x);
+            switch(x)
+            {
+                case 1:{
+                insertNodeAtEnding();
+                break;
+                }
+
+                case 2:{
+                Traverse();
+                break;
+                }
+
+                case 3:{
+                    printf("\nEXIT POINT\n");
+                break;
+                }
+                default:
+                {
+             printf("\nPlease Enter a Valid Choice\n");
+            }
+
+            }
+        }while(x!=3);
+        }
+
