@@ -81,6 +81,54 @@ void insertNodeAtEnding()
                 start=temp3;
             }
         }
+         void deleteAtEnd()
+         {
+             struct node *temp3;
+        if(start==NULL){
+            printf("The linked list is empty!");
+        }
+        else
+            {
+                temp2=start;
+                temp3=start;
+                while(temp2->next!=NULL)
+                {
+                    temp3=temp2;
+                    temp2=temp2->next;
+                }
+                if(temp2==start)
+                {
+                    start=NULL;
+                }
+                else
+                {
+                    temp3->next=NULL;
+                }
+
+                free(temp2);
+
+         }
+         }
+         void deleteAtMiddle()
+         {
+             int p;
+             printf("Enter position to delete\n");
+             scanf("%d",&p);
+             struct node *temp3;
+             if(start==NULL){
+            printf("The linked list is empty!\n");
+        }
+        else
+            {
+                temp2=start;
+                for(int i=1;i<p;i++)
+                {
+                    temp3=temp2;
+                    temp2=temp2->next;
+                }
+                temp3->next=temp2->next;
+         }
+         }
 
     void Traverse()
     {
@@ -123,11 +171,20 @@ void insertNodeAtEnding()
                         deleteAtBeginning();
                         break;
                     }
-                    case 5:{
+                case 5:
+                    {
+                        deleteAtEnd();
+                        break;
+                    }
+                    case 6:{
+                    deleteAtMiddle();
+                    break;}
+                    case 7:{
                 Traverse();
                 break;
                 }
-                case 6:{
+
+                case 8:{
                     printf("\nEXIT POINT\n");
                 break;
                 }
@@ -135,8 +192,7 @@ void insertNodeAtEnding()
                 {
              printf("\nPlease Enter a Valid Choice\n");
             }
-
             }
-        }while(x!=6);
+        }while(x!=8);
         }
 
