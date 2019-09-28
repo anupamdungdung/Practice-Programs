@@ -14,6 +14,7 @@ struct node *createnode()
 
 struct node *newnode;
 newnode=(struct node *)malloc(sizeof(struct node));
+newnode->next=NULL;
 return newnode;
 }
 struct node *temp1,*temp2;
@@ -24,7 +25,6 @@ void insertNodeAtEnding()
         temp1=createnode();
         printf("\nEnter the data\n");
         scanf("%d",&temp1->data);
-        temp1->next=NULL;
         if(start==NULL)
         {
             start=temp1;
@@ -40,6 +40,48 @@ void insertNodeAtEnding()
             temp2->next=temp1;//temp1 always stores the address of new node
         }
     }
+    void insertAtBeginning()
+    {   struct node *temp3;
+        temp1=createnode();
+        printf("\nEnter the data\n");
+        scanf("%d",&temp1->data);
+        temp3=start;
+        start=temp1;
+        temp1->next=temp3;
+
+    }
+    void insertAtMiddle()
+    {
+        int x;
+        struct node *temp3;
+        temp1=createnode();
+        printf("\nEnter the data\n");
+        scanf("%d",&temp1->data);
+        printf("\nEnter the position\n");
+        scanf("%d",&x);
+        temp2=start;
+        for(int i=1;i<x-1;i++)
+        {
+            temp2=temp2->next;
+        }
+        temp3=temp2->next;
+        temp2->next=temp1;
+        temp1->next=temp3;
+    }
+    void deleteAtBeginning()
+    {
+        struct node *temp3;
+        if(start==NULL){
+            printf("The linked list is empty!");
+        }
+        else
+            {
+                temp2=start;
+                temp3=temp2->next;
+                start=temp3;
+            }
+        }
+
     void Traverse()
     {
 
@@ -66,12 +108,26 @@ void insertNodeAtEnding()
                 break;
                 }
 
+
                 case 2:{
+                insertAtBeginning();
+                break;}
+
+                case 3:
+                    {
+                        insertAtMiddle();
+                        break;
+                    }
+                case 4:
+                    {
+                        deleteAtBeginning();
+                        break;
+                    }
+                    case 5:{
                 Traverse();
                 break;
                 }
-
-                case 3:{
+                case 6:{
                     printf("\nEXIT POINT\n");
                 break;
                 }
@@ -81,6 +137,6 @@ void insertNodeAtEnding()
             }
 
             }
-        }while(x!=3);
+        }while(x!=6);
         }
 
