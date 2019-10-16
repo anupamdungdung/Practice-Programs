@@ -1,0 +1,95 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+int x;
+struct node
+{
+
+    int data;
+    struct node *nextlink;
+    struct node *previouslink;
+}*start=NULL;
+
+struct node *temp,*temp2,*temp3;
+
+struct node *createnode()
+{
+
+struct node *newnode;
+newnode=(struct node *)malloc(sizeof(struct node));
+newnode->nextlink=NULL;
+newnode->previouslink=NULL;
+return newnode;
+}
+void create()
+{
+    temp=createnode();
+    printf("\nEnter the data\n");
+        scanf("%d",&temp->data);
+        if(start==NULL)
+        {
+            start=temp2=temp;
+        }
+        else
+        {
+            temp2->nextlink=temp;
+            temp->previouslink=temp2;
+            temp2=temp;
+        }
+}
+void Traverse()
+    {
+
+        temp2=start;
+
+            while(temp2!=NULL)
+            {
+                printf("%d ",temp2->data);
+                temp3=temp2;
+                temp2=temp2->nextlink;
+            }
+
+    }
+    void reverseTraverse()
+    {
+
+        while(temp3!=NULL)
+        {
+            printf("%d ",temp3->data);
+            temp3=temp3->previouslink;
+        }
+    }
+    void main()
+    {
+        do
+        {
+            printf("\nEnter your choice\n");
+            scanf("%d",&x);
+            switch(x)
+            {
+                case 1:{
+                create();
+                break;
+                }
+
+
+                case 2:{
+                Traverse();
+                break;}
+                case 3:
+                    {
+                        reverseTraverse();
+                        break;
+                    }
+                case 4:
+                    {
+                        printf("\nEXIT POINT\n");
+                        break;
+                    }
+                    default:{
+                    printf("\nPlease enter a valid choice\n");
+                    }
+
+    }
+        }while(x!=4);
+    }
