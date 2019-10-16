@@ -23,7 +23,7 @@ class Student extends College
     {
         System.out.println("Enter name of student:");
         name=sc.nextLine();
-        System.out.println("Enter name of address:");
+        System.out.println("Enter address:");
         address=sc.nextLine();
         System.out.println("Contact No:");
         contact=sc.nextLong();
@@ -39,18 +39,19 @@ class Student extends College
 }
 class Faculty extends College {
     String name, address, department;
-    long contact, regn;
+    long contact, regn,payscale;
     Scanner sc=new Scanner(System.in);
-    Faculty(long regn, String department)
+    Faculty(long regn, String department,long payscale)
     {
         this.regn = regn;
         this.department = department;
+        this.payscale=payscale;
     }
 
     void input() {
-        System.out.println("Enter name of faculty:");
+        System.out.println("Enter name of Faculty:");
         name = sc.nextLine();
-        System.out.println("Enter name of address:");
+        System.out.println("Enter address:");
         address = sc.nextLine();
         System.out.println("Enter contact no:");
         contact = sc.nextLong();
@@ -64,6 +65,35 @@ class Faculty extends College {
         System.out.println("Contact=" + contact);
         System.out.println("Registration=" + regn);
         System.out.println("Department=" + department);
+        System.out.println("Payscale="+payscale);
+        System.out.println();
+    }
+}
+class Staff extends College {
+    String name, address;
+    long contact,payscale;
+    Scanner sc=new Scanner(System.in);
+    Staff(long payscale)
+    {
+        this.payscale=payscale;
+    }
+
+    void input() {
+        System.out.println("Enter name of Staff:");
+        name = sc.nextLine();
+        System.out.println("Enter address:");
+        address = sc.nextLine();
+        System.out.println("Enter contact no:");
+        contact = sc.nextLong();
+    }
+
+    void display()
+    {
+        System.out.println("Staff Details");
+        System.out.println("Name=" + name);
+        System.out.println("Address=" + address);
+        System.out.println("Contact=" + contact);
+        System.out.println("Payscale="+payscale);
         System.out.println();
     }
 }
@@ -73,11 +103,14 @@ public class DriverProgram
     {   College ob1=new College();
 
         Student ob2=new Student(1801106100);
-        Faculty ob3=new Faculty(1201106100,"Information Technology");
+        Faculty ob3=new Faculty(1201106100,"Information Technology",60000);
+        Staff ob4=new Staff(20000);
         ob2.input();
         ob3.input();
+        ob4.input();
         ob1.display();
         ob2.display();
         ob3.display();
+        ob4.display();
     }
 }
