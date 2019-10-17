@@ -21,8 +21,8 @@ newnode->nextlink=NULL;
 newnode->previouslink=NULL;
 return newnode;
 }
-void create()
-{
+void insertAtEnding()
+    {
     temp=createnode();
     printf("\nEnter the data\n");
         scanf("%d",&temp->data);
@@ -37,6 +37,70 @@ void create()
             temp2=temp;
         }
 }
+void insertAtBeginning()
+{
+    temp=createnode();
+        printf("\nEnter the data\n");
+        scanf("%d",&temp->data);
+        temp3=start;
+        start=temp;
+        temp->nextlink=temp3;
+        temp3->previouslink=temp;
+}
+void insertAtMiddle()
+{
+    int x;
+        temp=createnode();
+        printf("\nEnter the data\n");
+        scanf("%d",&temp->data);
+        printf("\nEnter the position\n");
+        scanf("%d",&x);
+        temp2=start;
+        for(int i=1;i<x-1;i++)
+        {
+            temp2=temp2->nextlink;
+        }
+        temp3=temp2->nextlink;
+        temp3->previouslink=temp;
+        temp2->nextlink=temp;
+        temp->nextlink=temp3;
+        temp->previouslink=temp2;
+}
+void deleteAtBeginning()
+{
+    temp2=start;
+    temp3=temp2->nextlink;
+    temp3->previouslink=NULL;
+    start=temp3;
+    free(temp2);
+  }
+  void deleteAtEnding()
+  {
+      temp2=start;
+      temp3=start;
+      while(temp2->nextlink!=NULL)
+      {
+          temp3=temp2;
+          temp2=temp2->nextlink;
+      }
+      temp3->nextlink=NULL;
+      free(temp2);
+  }
+  void deleteAtMiddle()
+  {
+      int p;
+      printf("Enter the position to delete\n");
+      scanf("%d",&p);
+      temp2=start;
+      temp3=start;
+      for(int i=1;i<p;i++)
+      {
+          temp3=temp2;
+          temp2=temp2->nextlink;
+      }
+      temp3->nextlink=temp2->nextlink;
+      temp2->previouslink=temp3;
+  }
 void Traverse()
     {
 
@@ -68,20 +132,43 @@ void Traverse()
             switch(x)
             {
                 case 1:{
-                create();
+                insertAtEnding();
                 break;
                 }
-
-
-                case 2:{
-                Traverse();
-                break;}
-                case 3:
+                case 2:
+                    {
+                        insertAtBeginning();
+                        break;
+                    }
+                    case 3:
+                    {
+                        insertAtMiddle();
+                        break;
+                    }
+                    case 4:
+                        {
+                            deleteAtBeginning();
+                            break;
+                        }
+                    case 5:
+                        {
+                            deleteAtEnding();
+                            break;
+                        }
+                    case 6:
+                        {
+                            deleteAtMiddle();
+                            break;
+                        }
+                    case 7:{
+                            Traverse();
+                            break;}
+                    case 8:
                     {
                         reverseTraverse();
                         break;
                     }
-                case 4:
+                    case 9:
                     {
                         printf("\nEXIT POINT\n");
                         break;
@@ -91,5 +178,5 @@ void Traverse()
                     }
 
     }
-        }while(x!=4);
+        }while(x!=9);
     }
