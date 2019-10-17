@@ -1,16 +1,28 @@
 #include <stdio.h>
 
 int main() {
-	int m,n,c1=0,c2=0;
+	int m,n,c1=0;
+	printf("Enter no of rows and columns\n");
 	scanf("%d %d",&m,&n);
 	int a[m][n];
+	printf("Enter the matrix\n");
 	for(int i=0;i<m;i++)
 	{
 	    for(int j=0;j<n;j++)
 	    {
-	        
+
 	        scanf("%d",&a[i][j]);
 	    }
+	}
+	printf("Sparse matrix\n");
+	for(int i=0;i<m;i++)
+	{
+	    for(int j=0;j<n;j++)
+	    {
+
+	        printf("%d ",a[i][j]);
+	    }
+	    printf("\n");
 	}
 	for(int i=0;i<m;i++)
 	{
@@ -36,11 +48,11 @@ int main() {
 	        ar[k][2]=a[i][j];
 	        k++;
 	    }
-	   
+
 	}
-	
-	}
-	
+}
+
+    printf("Array Equivalent of Sparse Matrix\n");
 	for(int i=0;i<c1+1;i++)
 	{
 	    for(int j=0;j<3;j++)
@@ -49,6 +61,6 @@ int main() {
 	    }
 	    printf("\n");
 	}
-	
+
 	return 0;
 }
