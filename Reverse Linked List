@@ -75,7 +75,9 @@ void insertNodeAtEnding()
         {
             insertNodeAtEnding();
         }
+        printf("Linked List\n");
         Traverse();
+        printf("Reversed Linked List\n");
         reverse();
         Traverse();
     }
