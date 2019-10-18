@@ -1,0 +1,27 @@
+class ABC
+{
+    public void display()
+    {
+        System.out.println("My name is Anupam Dung Dung");
+    }
+}
+ class ABCD extends ABC {
+    public void display() {
+        System.out.println("This is the inheritance block");
+    }
+
+}
+public class runtime_overriding{
+    public static void main(String[] args)
+    {
+        ABC ob1=new ABC();
+        ABCD ob2=new ABCD();
+        ABC ref;
+        ref=ob1;
+        ref.display();
+        ref=ob2;
+        ref.display();
+
+
+    }
+}
