@@ -1,0 +1,86 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+int x;
+struct node
+{
+
+    int data;
+    struct  node *next;
+}*start=NULL;
+
+struct node *createnode()
+{
+
+struct node *newnode;
+newnode=(struct node *)malloc(sizeof(struct node));
+newnode->next=NULL;
+return newnode;
+}
+struct node *temp1,*temp2;
+void insertNodeAtEnding()
+{
+
+
+        temp1=createnode();
+        printf("\nEnter the data\n");
+        scanf("%d",&temp1->data);
+        if(start==NULL)
+        {
+            start=temp1;
+        }
+        else
+        {
+            temp2=start;
+            do
+            {
+                temp2=temp2->next;
+
+            }while(temp2->next!=start);
+            temp2->next=temp1;//temp1 always stores the address of new node
+        }
+    temp1->next=start;
+
+    }
+    void Traverse()
+    {
+
+        temp2=start;
+
+            do
+            {
+                printf("%d ",temp2->data);
+                temp2=temp2->next;
+            }while(temp2!=start);
+
+
+    }
+    void main()
+    {
+
+        do
+        {
+            printf("\nEnter your choice\n");
+            scanf("%d",&x);
+            switch(x)
+            {
+                case 1:{
+                insertNodeAtEnding();
+                break;
+                }
+                case 2:
+                    {
+                    Traverse();
+                    break;
+                    }
+                    case 3:{
+                    printf("\nEXIT POINT\n");
+                break;
+                }
+                default:
+                    {
+                        printf("\nPlease Enter a Valid Choice\n");
+                    }
+            }
+        }while(x!=3);
+    }
