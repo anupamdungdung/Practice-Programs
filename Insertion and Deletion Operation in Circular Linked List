@@ -1,0 +1,191 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+int x;
+struct node
+{
+
+    int data;
+    struct  node *next;
+}*start=NULL;
+
+struct node *createnode()
+{
+
+struct node *newnode;
+newnode=(struct node *)malloc(sizeof(struct node));
+newnode->next=NULL;
+return newnode;
+}
+struct node *temp1,*temp2,*temp3;
+void insertAtEnding()
+{
+
+
+        temp1=createnode();
+        printf("\nEnter the data\n");
+        scanf("%d",&temp1->data);
+        if(start==NULL)
+        {
+            start=temp1;
+        }
+        else
+        {
+            temp2=start;
+            do
+            {
+                temp2=temp2->next;
+
+            }while(temp2->next!=start);
+            temp2->next=temp1;//temp1 always stores the address of new node
+        }
+    temp1->next=start;
+
+    }
+    void insertAtBeginning()
+    {
+        temp1=createnode();
+        printf("\nEnter the data\n");
+        scanf("%d",&temp1->data);
+        temp2=start;
+        temp1->next=temp2;
+        while(temp2->next!=start)
+        {
+            temp2=temp2->next;
+        }
+        start=temp1;
+        temp2->next=start;
+    }
+    void insertAtMiddle()
+    {
+        int x;
+        temp1=createnode();
+        printf("\nEnter the data\n");
+        scanf("%d",&temp1->data);
+        printf("\nEnter the position\n");
+        scanf("%d",&x);
+        if(start==NULL)
+        {
+            start=temp1;
+        }
+        else
+        {
+            temp2=start;
+        for(int i=1;i<x-1;i++)
+        {
+            temp2=temp2->next;
+        }
+        temp1->next=temp2->next;
+        temp2->next=temp1;
+
+    }
+    }
+    void deleteAtBeginning()
+    {
+        temp2=temp3=start;
+        while(temp2->next!=start)
+        {
+            temp2=temp2->next;
+        }
+        temp2->next=temp3->next;//Last node pointing to the second node to make it circular
+        start=temp3->next;
+        free(temp3);
+    }
+    void deleteAtEnd()
+    {
+        temp2=start;
+        while(temp2->next!=start)
+        {
+            temp3=temp2;
+            temp2=temp2->next;
+        }
+        temp3->next=temp2->next;
+        free(temp2);
+    }
+    void Traverse()
+    {
+
+        temp2=start;
+
+            do
+            {
+                printf("%d ",temp2->data);
+                temp2=temp2->next;
+            }while(temp2!=start);
+
+
+    }
+    void deleteAtMiddle()
+    {
+        int p;
+             printf("Enter position to delete\n");
+             scanf("%d",&p);
+             if(start==NULL){
+            printf("The linked list is empty!\n");
+        }
+        else
+            {
+                temp2=start;
+                for(int i=1;i<p;i++)
+                {
+                    temp3=temp2;
+                    temp2=temp2->next;
+                }
+                temp3->next=temp2->next;
+         }
+    }
+    void main()
+    {
+
+        do
+        {
+            printf("\nEnter your choice\n");
+            scanf("%d",&x);
+            switch(x)
+            {
+                case 1:{
+                insertAtEnding();
+                break;
+                }
+                case 2:
+                    {
+                        insertAtBeginning();
+                        break;
+                    }
+                case 3:
+                    {
+                        insertAtMiddle();
+                        break;
+                    }
+                case 4:
+                    {
+                        deleteAtBeginning();
+                        break;
+                    }
+                case 5:
+                    {
+                        deleteAtEnd();
+                        break;
+                    }
+                case 6:
+                    {
+                        deleteAtMiddle();
+                        break;
+                    }
+                case 7:
+                    {
+                    Traverse();
+                    break;
+                    }
+
+                    case 8:{
+                    printf("\nEXIT POINT\n");
+                break;
+                }
+                default:
+                    {
+                        printf("\nPlease Enter a Valid Choice\n");
+                    }
+            }
+        }while(x!=8);
+    }
