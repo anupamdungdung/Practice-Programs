@@ -1,0 +1,123 @@
+#include<stdio.h>
+#include<stdlib.h>
+int x;
+struct node
+{
+ int data;
+ struct node *leftchild;
+ struct node *rightchild;
+}*root=NULL;
+
+struct node *createnode()
+{
+ struct node *newnode;
+ newnode=(struct node*)malloc(sizeof(struct node));
+ newnode->leftchild=NULL;
+ newnode->rightchild=NULL;
+ return newnode;
+}
+struct node *current,*parent,*temp;
+
+void insert()
+{
+
+    temp=createnode();
+    printf("\nEnter value to be entered\n");
+    scanf("%d",&temp->data);
+    if(root==NULL)
+    {
+        root=temp;
+    }
+    else
+    {
+        current=root;
+        parent=NULL;
+        while(1){
+
+        parent=current;
+
+            //go to left of the tree
+            if(temp->data<parent->data)
+            {
+                current = current->leftchild;
+
+            //insert to the left
+            if(current == NULL) {
+               parent->leftchild = temp;
+               return;
+            }
+
+         }
+            //go to right of the tree
+         else
+            {
+            current = current->rightchild;
+            //insert to the right
+            if(current == NULL) {
+               parent->rightchild = temp;
+               return;
+            }
+         }
+        }
+      }
+    }
+void pre_order_traversal(struct node* root) {
+   if(root != NULL) {
+      printf("%d ",root->data);
+      pre_order_traversal(root->leftchild);
+      pre_order_traversal(root->rightchild);
+   }
+}
+void inorder_traversal(struct node* root) {
+   if(root != NULL) {
+      inorder_traversal(root->leftchild);
+      printf("%d ",root->data);
+      inorder_traversal(root->rightchild);
+   }
+}
+void post_order_traversal(struct node* root) {
+   if(root != NULL) {
+      post_order_traversal(root->leftchild);
+      post_order_traversal(root->rightchild);
+      printf("%d ", root->data);
+   }
+}
+void main()
+{   do
+{
+    printf("\nEnter your choice\n");
+    scanf("%d",&x);
+    switch(x)
+    {
+        case 1:{
+                insert();
+        break;
+        }
+        case 2:
+            {
+                pre_order_traversal(root);
+                break;
+            }
+        case 3:
+            {
+                inorder_traversal(root);
+                break;
+            }
+        case 4:
+            {
+                post_order_traversal(root);
+                break;
+            }
+        case 5:
+            {
+                printf("\nEXIT STATUS\n");
+                break;
+            }
+        default:
+            {
+                printf("Enter a valid choice");
+                break;
+            }
+        }
+    }while(x!=5);
+}
