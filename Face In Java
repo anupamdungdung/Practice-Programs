@@ -1,0 +1,68 @@
+
+import java.applet.*;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+// HelloWorld class extends Applet
+    public class HelloWorld extends Frame
+    {
+        public HelloWorld()
+        {
+            super("Demo");
+            prepareGUI();
+        }
+            public static void main(String[] args)
+            {
+                HelloWorld demo=new HelloWorld();
+                demo.setVisible(true);
+            }
+            private void prepareGUI()
+            {
+                setSize(400,400);
+                addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+            }
+        // Overriding paint() method
+        @Override
+        public void paint(Graphics g)
+        {
+            g.drawLine(100,100,300,100);
+            g.drawLine(100,100,100,300);
+            g.drawLine(300,100,300,300);
+            g.drawLine(100,300,300,300);
+            g.drawArc(100,35,200,130,0,180);
+            g.drawOval(140,140,30,30);//Left inner eye
+            g.drawOval(230,142,30,30);//Right inner eye
+            g.drawOval(130,130,50,50);//Left outer eye
+            g.drawOval(220,132,50,50);//Right outer eye
+            g.drawLine(150,260,250,260);//Smile Upper
+            g.drawArc(150,245,100,30,0,-180);//Smile Arc
+            g.drawLine(195,160,205,160);//Low Tilak
+            g.drawLine(190,100,195,160);//Left Wall Tilak
+            g.drawLine(205,160,210,100);//Right Wall Tilak
+            g.drawLine(195,180,205,180);//Nose Upper
+            g.drawLine(190,230,210,230);//Nose Lower
+            g.drawLine(195,180,190,230);//Left Wall of Nose
+            g.drawLine(205,180,210,230);//Right Wall of Nose
+            g.drawOval(170,213,30,30);
+            g.drawArc(100,210,200,180,0,-180);//Last Line Necklace
+            g.drawArc(100,220,200,160,0,-180);//Middle Line Necklace
+            g.drawArc(100,230,200,140,0,-180);//First Line Necklace
+            g.drawOval(300,250,80,80);//Right Oval Lowest
+            g.drawOval(310,260,60,60);//Right Oval Lowest Inner
+            g.drawOval(20,250,80,80);//Left Oval Lowest
+            g.drawOval(30,260,60,60);//Left Oval Inner
+            g.drawOval(300,190,60,60);//Right Oval Middle
+            g.drawOval(40,190,60,60);//Left Oval Middle
+            g.drawOval(310,200,40,40);//Right Oval Middle Inner
+            g.drawOval(50,200,40,40);//Left Oval Middle Inner
+
+        }
+
+    }
+
