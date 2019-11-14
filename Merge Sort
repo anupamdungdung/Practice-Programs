@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define SIZE 100
+int a[SIZE],n,q;
+void merge(int a[],int,int,int);
+void mergesort(int a[],int p,int r)
+{
+	if(p>r)return;
+	q=(p+r)/2;
+	mergesort(a,p,q);
+	mergesort(a,q+1,r);
+	merge(a,p,q,r);
+}
+void merge(int a[],int p,int q,int r)
+{
+	int temp[r-p+1];
+	int i,j,k;
+	i=p;
+	j=q+1;
+	k=0;
+	while(i<=q && j<=r)
+	{
+		if(a[i]<=a[j])
+		{
+		
+		temp[k]=a[i];
+		k++;
+		i++;
+		}
+		else
+		{
+			temp[k]=a[j];
+			k++;j++;
+		}
+}
+while(i<=q)
+{
+	temp[k]=a[i];
+	k=k+1;
+	i=i+1;
+}
+while(j<=r)
+{
+	temp[k]=a[j];
+	k++;j++;
+}
+for(int i=p;i<=r;i++)
+{
+	a[i]=temp[i-p];
+}
+}
+int main()
+{	printf("\nEnter number of elements in the array\n");
+	scanf("%d",&n);
+	printf("\nEnter elements in the array\n");
+	for(int i=0;i<n;i++)
+	{
+		scanf("%d",&a[i]);
+	}
+	mergesort(a,0,5);
+	printf("\nThe sorted array\n");
+	for(int i=0;i<n;i++)
+	{
+		printf("%d ",a[i]);
+	}
+	return 0;
+}
