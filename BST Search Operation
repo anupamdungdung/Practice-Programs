@@ -1,0 +1,127 @@
+#include<stdio.h>
+#include<stdlib.h>
+int x,val;
+struct node
+{
+ int data;
+ struct node *leftchild;
+ struct node *rightchild;
+}*root=NULL;
+
+struct node *createnode()
+{
+ struct node *newnode;
+ newnode=(struct node*)malloc(sizeof(struct node));
+ newnode->leftchild=NULL;
+ newnode->rightchild=NULL;
+ return newnode;
+}
+struct node *current,*parent,*temp;
+
+void insert()
+{
+
+    temp=createnode();
+    printf("\nEnter value to be entered\n");
+    scanf("%d",&temp->data);
+    if(root==NULL)
+    {
+        root=temp;
+    }
+    else
+    {
+        current=root;
+        parent=NULL;
+        while(1){
+
+        parent=current;
+
+            //go to left of the tree
+            if(temp->data<parent->data)
+            {
+                current = current->leftchild;
+
+            //insert to the left
+            if(current == NULL) {
+               parent->leftchild = temp;
+               return;
+            }
+
+         }
+            //go to right of the tree
+         else
+            {
+            current = current->rightchild;
+            //insert to the right
+            if(current == NULL) {
+               parent->rightchild = temp;
+               return;
+            }
+         }
+        }
+      }
+    }
+    struct node *search(int val)
+    {
+     current=root;
+     printf("\nVisiting elements\n");
+     while(current->data!=val)
+     {
+         if(current!=NULL)
+         printf("%d ",current->data);
+
+         //go to left tree
+         if(current->data>val)
+         {
+             current=current->leftchild;
+         }
+         else{
+            current=current->rightchild;
+         }
+         if(current==NULL)
+         {
+             return NULL;
+         }
+     }
+     return current;
+    }
+    void searchforvalue()
+    {
+        printf("\nEnter value to be searched\n");
+     scanf("%d",&val);
+     temp=search(val);
+     if(temp!=NULL)
+     {
+         printf("\n[%d] Element Found\n",temp->data);
+     }
+     else
+     {
+         printf("\n[x] Element Not Found(%d)\n",val);
+     }
+    }
+    void main()
+    {
+        do
+{
+    printf("\nEnter your choice\n");
+    scanf("%d",&x);
+    switch(x)
+    {
+        case 1:{
+                insert();
+        break;
+        }
+        case 2:{
+        searchforvalue();
+        break;
+        }
+        case 3:{
+        printf("\nEXIT STATUS\n");
+        break;}
+        default:
+            {
+                printf("\nEnter a Valid Choice\n");
+            }
+    }
+}while(x!=3);
+    }
