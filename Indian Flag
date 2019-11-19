@@ -23,7 +23,7 @@ public class flageneration extends Frame {
     public void paint(Graphics g)
     {
         g.drawRect(140,100,200,50);
-        g.setColor(Color.orange);
+        g.setColor(new Color(255,153,51));
         g.fillRect(141,101,199,49);
         g.setColor(Color.black);
         g.drawRect(140,150,200,50);
@@ -54,5 +54,5 @@ public class flageneration extends Frame {
         g.setFont(font);
         g.drawString("JAI HIND!",280,350);
     }
-    }
+}
 
