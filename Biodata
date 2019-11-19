@@ -1,19 +1,37 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-public class biodata extends Frame {
+public class biodata extends Frame implements ActionListener {
+    TextField name,branch,address;Choice choice;
     biodata()
     {
         super("Biodata");
-        TextField name=new TextField();
-        name.setBounds(156,134,200,22);
+        name=new TextField();
+        name.setBounds(200,134,200,22);
         add(name);
-        TextField branch=new TextField();
-        branch.setBounds(156,184,200,22);
+        branch=new TextField();
+        branch.setBounds(200,184,200,22);
         add(branch);
-        TextField address=new TextField();
-        address.setBounds(156,232,200,70);
+        address=new TextField();
+        address.setBounds(200,232,200,70);
         add(address);
+        choice=new Choice();
+        choice.setBounds(200,332,200,30);
+        choice.add("");
+        choice.add("INDIAN");
+        choice.add("OTHER");
+        add(choice);
+        Button submit=new Button("SUBMIT");
+        submit.setFont(new Font("Helvetica",Font.BOLD,20));
+        submit.setBounds(100,410,100,40);
+        add(submit);
+        Button clear=new Button("CLEAR");
+        clear.setFont(new Font("Helvetica",Font.BOLD,20));
+        clear.setBounds(300,410,100,40);
+        clear.addActionListener(this);
+        add(clear);
         prepareGUI();
     }
     public static void main(String[] args) {
@@ -21,16 +39,21 @@ public class biodata extends Frame {
 
         demo.setVisible(true);
     }
-    private void prepareGUI() {
+    public void prepareGUI() {
         setSize(500,500);
         setBackground(Color.getHSBColor(360,100,5));
-        setLayout(null);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
             }
         });
+    }
+    public void thanx()
+    {
+        setSize(500,500);
+        setBackground(Color.getHSBColor(360,100,5));
+
     }
     public void paint(Graphics g)
     {
@@ -44,5 +67,13 @@ public class biodata extends Frame {
         g.drawString("ADDRESS:",50,250);
         g.setFont(new Font("Helvetica",Font.BOLD,20));
         g.drawString("NATIONALITY:",50,350);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+        name.setText("");
+        branch.setText("");
+        address.setText("");
+        choice.select("");
     }
 }
