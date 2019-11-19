@@ -49,12 +49,6 @@ public class biodata extends Frame implements ActionListener {
             }
         });
     }
-    public void thanx()
-    {
-        setSize(500,500);
-        setBackground(Color.getHSBColor(360,100,5));
-
-    }
     public void paint(Graphics g)
     {
         Font font=new Font("Helvetica",Font.BOLD,25);
