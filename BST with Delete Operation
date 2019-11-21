@@ -1,0 +1,217 @@
+#include<stdio.h>
+#include<stdlib.h>
+int x,y;
+struct node
+{
+ int data;
+ struct node *leftchild;
+ struct node *rightchild;
+}*root=NULL;
+
+struct node *createnode()
+{
+ struct node *newnode;
+ newnode=(struct node*)malloc(sizeof(struct node));
+ newnode->leftchild=NULL;
+ newnode->rightchild=NULL;
+ return newnode;
+}
+struct node *current,*parent,*temp;
+
+void insert()
+{
+
+    temp=createnode();
+    printf("\nEnter value to be entered\n");
+    scanf("%d",&temp->data);
+    if(root==NULL)
+    {
+        root=temp;
+    }
+    else
+    {
+        current=root;
+        parent=NULL;
+        while(1){
+
+        parent=current;
+
+            //go to left of the tree
+            if(temp->data<parent->data)
+            {
+                current = current->leftchild;
+
+            //insert to the left
+            if(current == NULL) {
+               parent->leftchild = temp;
+               return;
+            }
+
+         }
+            //go to right of the tree
+         else
+            {
+            current = current->rightchild;
+            //insert to the right
+            if(current == NULL) {
+               parent->rightchild = temp;
+               return;
+            }
+         }
+        }
+      }
+    }
+    struct node *minimumkey(struct node *current)
+    {
+    	while(current->leftchild!=NULL)
+    	{
+    		current=current->leftchild;
+		}
+		return current;
+	}
+	void searchkey(struct node* &current,int key,struct node* &parent)
+	{
+		while(current!=NULL && current->data!=key)
+		{
+			parent=current;
+			if(key<current->data)
+			current=current->leftchild;
+			else
+			current=current->rightchild;
+		}
+	}
+    void deletenode(struct node* &root,int key)
+    {
+    	
+		current=root;
+    	parent=NULL;
+    	searchkey(current,key,parent);
+    	if(current==NULL)return;
+	
+    	//Case 1
+    	if(current->leftchild==NULL && current->rightchild==NULL)
+    	{
+    		if(current!=root)
+    		{
+    			if(parent->leftchild==current)
+    			parent->leftchild=NULL;
+    			else
+    			parent->rightchild=NULL;
+			}
+			else
+			root=NULL;//If only root node is present
+			free(current);
+		}
+		//Case 2
+		else if(current->leftchild && current->rightchild)
+		{
+			struct node *successor=minimumkey(current->rightchild);
+			int value=successor->data;
+			deletenode(root,successor->data);
+			current->data=value;		
+		}
+		//Case 3
+		else
+		{
+			struct node *child=(current->leftchild)?current->leftchild:current->rightchild;
+			if(current!=root)
+			{
+				if(current==parent->leftchild)
+				parent->leftchild=child;
+				else
+				parent->rightchild=child;
+			}
+			else
+			root=child;
+			free(current);
+		}
+	}
+
+
+void pre_order_traversal(struct node* root) {
+   if(root != NULL) {
+      printf("%d ",root->data);
+      pre_order_traversal(root->leftchild);
+      pre_order_traversal(root->rightchild);
+   }
+}
+void inorder_traversal(struct node* root) {
+   if(root != NULL) {
+      inorder_traversal(root->leftchild);
+      printf("%d ",root->data);
+      inorder_traversal(root->rightchild);
+   }
+   
+}
+void post_order_traversal(struct node* root) {
+   if(root != NULL) {
+      post_order_traversal(root->leftchild);
+      post_order_traversal(root->rightchild);
+      printf("%d ", root->data);
+   }
+   
+}
+int main()
+{   do
+{
+    printf("\nEnter your choice\n");
+    scanf("%d",&x);
+    switch(x)
+    {
+        case 1:{
+                insert();
+        break;
+        }
+        case 2:
+            {	if(root==NULL)
+            	{
+            		printf("\nThe linked list is empty\n");
+            		break;
+				}
+                pre_order_traversal(root);
+                break;
+            }
+        case 3:
+            {if(root==NULL)
+            	{
+            		printf("\nThe linked list is empty\n");
+            		break;
+				}
+                inorder_traversal(root);
+                break;
+            }
+        case 4:
+            {if(root==NULL)
+            	{
+            		printf("\nThe linked list is empty\n");
+            		break;
+				}
+                post_order_traversal(root);
+                break;
+            }
+            case 5:
+            	{	
+					if(root==NULL)
+            		{
+            		printf("\nThe linked list is empty\n");
+            		break;
+					}
+					printf("\nEnter the value to be deleted\n");
+            		scanf("%d",&y);
+            		deletenode(root,y);
+            		break;
+				}
+        case 6:
+            {
+                printf("\nEXIT STATUS\n");
+                break;
+            }
+        default:
+            {
+                printf("Enter a valid choice");
+                break;
+            }
+        }
+    }while(x!=6);
+    return 0;
+}
