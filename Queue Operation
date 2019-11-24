@@ -5,7 +5,7 @@ void push();
 void pop();
 void display();
 int main() {
-    front=rear=0;;
+    front=rear=-1;
     printf("\nEnter size of queue\n");
 	scanf("%d",&n);
     do{
@@ -44,7 +44,7 @@ int main() {
 void push()
 {
 
-    if(rear==n)
+    if(rear==n-1)
     {
         printf("\nOVERFLOW");
     }
@@ -52,38 +52,39 @@ void push()
     {
 		printf("\nEnter a value to be pushed\n");
         scanf("%d",&x);
+	rear++;
         q[rear]=x;
-        rear++;
+        
 
     }
 }
 void pop()
 {
-    if(front==0 && rear==0)
+    if(front==-1 && rear==-1)
     {
         printf("\nUNDERFLOW");
     }
     else
-    {
+    {if(front==-1)f=0;
      val=q[front];
      printf("\nThe value that is being deleted=%d",val);
      front++;
-     if(front==rear)
+     if(front>rear)
      {
-         front=0;
-         rear=0;
+         front=-1;
+         rear=-1;
      }
     }
 }
 void display()
 {
-    if(front==0 && rear==0)
+    if(front==-1 && rear==-1)
     {
         printf("The queue is empty");
     }
     else
     {
-        for(int i=front;i<rear;i++)
+        for(int i=front;i<=rear;i++)
         {
             printf("%d",q[i]);
         }
