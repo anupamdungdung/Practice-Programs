@@ -1,30 +1,40 @@
 #include <stdio.h>
-#include <stdlib.h>
-#define SIZE 100
-int a[SIZE],n,t,min;
-int main()
-{	
-	printf("\nEnter number of elements in the array\n");
-	scanf("%d",&n);
-	printf("\nEnter elements in the array\n");
-	for(int i=0;i<n;i++)
-	{
-		scanf("%d",&a[i]);
-	}
-	for(int i=0;i<n-1;i++)
-	{
-		min=i;
-	for(int j=i+1;j<n;j++)
-	{
-		if(a[j]<a[i])min=j;;
-	}
-	t=a[i];
-	a[i]=a[min];
-	a[min]=t;
+#define SIZE 5
+int a[SIZE];
+void selectionsort()
+{int t=0,min=0,index;
+
+    for(int i=0;i<SIZE-1;i++)
+    {
+        min=a[i];//the elements gets sorted from the beginning
+        for(int j=i+1;j<SIZE;j++)
+        {
+            if(a[j]<min)
+            {
+                index=j;
+                min=a[j];
+            }
+            t=a[i];
+        a[i]=a[index];
+        a[index]=t;
+        }
+
+    }
 }
-printf("\The sorted array\n");
-	for(int i=0;i<n;i++)
-	{
-		printf("%d ",a[i]);
-	}
+void main()
+{
+
+    printf("Enter elements in the array\n");
+
+    for(int i=0;i<SIZE;i++)
+    {
+        scanf("%d ",&a[i]);
+    }
+    selectionsort();
+    printf("Sorted Array\n");
+    for(int i=0;i<SIZE;i++)
+    {
+        printf("%d ",a[i]);
+    }
+
 }
