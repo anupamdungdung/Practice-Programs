@@ -1,0 +1,108 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+#define MAX 5
+int unvisitedvertex,x,startedge,endedge;char c;
+struct Vertex{
+char label;
+bool visited;
+};
+
+int queue[MAX];
+int rear=-1;
+int front=0;
+int queueitemcount=0;
+
+struct Vertex *vertices[MAX];
+
+int adjmatx[MAX][MAX];
+int vertexcount=0;
+
+void insert(int data)
+{
+    queue[++rear]=data;
+    queueitemcount++;
+}
+int removeIndex()
+{
+    queueitemcount--;
+    return queue[front++];
+}
+bool isqueuempty()
+{
+    return queueitemcount==0;
+}
+
+void addvertex(char label)
+{
+    struct Vertex* vertex=(struct Vertex*)malloc(sizeof(struct Vertex));
+    vertex->label=label;
+    vertex->visited=false;
+    vertices[vertexcount++]=vertex;
+}
+void addedge(int start,int end){
+adjmatx[start][end]=1;
+
+}
+
+void displayvertex(int vertexindex)
+{
+    printf("%c ",vertices[vertexindex]->label);
+}
+
+int getadjacent(int vertexindex)
+{
+        for(int i=0;i<vertexcount;i++)
+        {
+            if(adjmatx[vertexindex][i]==1 && vertices[i]->visited==false)
+                return i;
+        }
+            return -1;
+}
+void bfs()
+{
+    vertices[0]->visited=true;
+    displayvertex(0);//Display of the vertex
+    insert(0);//Insertion of the vertex into the queue
+    while(!isqueuempty())
+    {
+        int tempvertex=removeIndex();
+        while((unvisitedvertex=getadjacent(tempvertex))!=-1){
+            vertices[unvisitedvertex]->visited=true;
+            displayvertex(unvisitedvertex);
+            insert(unvisitedvertex);
+        }
+
+    }
+    for(int i=0;i<vertexcount;i++)
+    {
+        vertices[i]->visited=false;
+    }
+
+}
+int main()
+{
+
+    for(int i=0;i<MAX;i++)
+    {
+        for(int j=0;j<MAX;j++)
+        {
+            adjmatx[i][j]=0;
+        }
+    }
+    addvertex('S');   // 0
+   addvertex('A');   // 1
+   addvertex('B');   // 2
+   addvertex('C');   // 3
+   addvertex('D');   // 4
+
+   addedge(0, 1);    // S - A
+   addedge(0, 2);    // S - B
+   addedge(0, 3);    // S - C
+   addedge(1, 4);    // A - D
+   addedge(2, 4);    // B - D
+   addedge(3, 4);    // C - D
+    printf("\nBreadth First Search: ");
+    bfs();
+    return 0;
+}
