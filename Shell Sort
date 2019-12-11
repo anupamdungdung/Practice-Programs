@@ -1,0 +1,41 @@
+#include <stdio.h>
+#define SIZE 10
+int a[SIZE],n;
+void shellsort(int a[],int size)
+{
+    for(int gap=size/2;gap>0;gap/=2)
+    {
+        for(int i=gap;i<size;i++)
+        {
+            int temp=a[i];
+            int j;
+            for(j=i;j>=gap && a[j-gap]>temp;j-=gap)
+            {
+                a[j]=a[j-gap];
+            }
+            a[j]=temp;
+        }
+    }
+}
+void printarray(int a[],int size)
+{
+    for(int i=0;i<size;i++)
+    {
+        printf("%d ",a[i]);
+    }
+}
+void main()
+{
+    printf("\nEnter no of elements\n");
+    scanf("%d",&n);
+    printf("\nEnter elements\n");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("\nOriginal Array\n");
+    printarray(a,n);
+    shellsort(a,n);
+    printf("\nSorted Array\n");
+    printarray(a,n);
+}
