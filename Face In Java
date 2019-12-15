@@ -7,18 +7,18 @@ import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 
 // HelloWorld class extends Applet
-    public class HelloWorld extends Frame
+    public class face extends Frame
     {
 
 
-        public HelloWorld()
+        public face()
         {
             super("Demo");
             prepareGUI();
         }
             public static void main(String[] args)
             {
-                HelloWorld demo=new HelloWorld();
+                face demo=new face();
                 demo.setVisible(true);
             }
             private void prepareGUI()
@@ -42,9 +42,9 @@ import java.text.AttributedCharacterIterator;
             g.drawLine(300,100,300,300);
             g.drawLine(100,300,300,300);
             g.fillRect(100,100,200,200);
-            g.drawArc(100,35,200,130,0,180);
+            g.drawArc(100,45,200,120,0,180);
             g.setColor(Color.yellow);
-            g.fillArc(100,35,200,135,0,180);
+            g.fillArc(100,45,200,110,0,180);
             g.setColor(Color.black);
             g.drawOval(140,140,30,30);//Left inner eye
             g.drawOval(230,142,30,30);//Right inner eye
