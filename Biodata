@@ -4,21 +4,31 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 public class biodata extends Frame implements ActionListener {
-    Label name,branch,address;
+    Label name,branch,address,nationality;
     TextField name1, branch1, address1;
     Choice choice;
     Button submit, clear;
 
     biodata() {
         super("Biodata");
-        Font font=new Font("Helvetica",Font.BOLD,22);
-        setFont(font);
         name=new Label("NAME:");
-        name.setBounds(80,128,100,30);
+        name.setFont(new Font("Helvetica",Font.BOLD,20));
+        name.setBounds(50,128,100,30);
         add(name);
         branch=new Label("BRANCH:");
-        branch.setBounds(80,178,110,30);
+        branch.setFont(new Font("Helvetica",Font.BOLD,20));
+
+        branch.setBounds(50,178,110,30);
         add(branch);
+        address=new Label("ADDRESS:");
+        address.setFont(new Font("Helvetica",Font.BOLD,20));
+
+        address.setBounds(50,230,150,30);
+        add(address);
+        nationality=new Label("NATIONALITY:");
+        nationality.setFont(new Font("Helvetica",Font.BOLD,20));
+        nationality.setBounds(50,328,150,30);
+        add(nationality);
         name1 = new TextField();
         name1.setBounds(200, 134, 200, 22);
         add(name1);
@@ -68,9 +78,9 @@ public class biodata extends Frame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         if (actionEvent.getSource() == clear) {
-            name.setText("");
-            branch.setText("");
-            address.setText("");
+            name1.setText("");
+            branch1.setText("");
+            address1.setText("");
             choice.select("");
         }
         if(actionEvent.getSource()==submit)
