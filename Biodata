@@ -41,6 +41,7 @@ public class biodata extends Frame implements ActionListener {
     }
     public void prepareGUI() {
         setSize(500,500);
+        setLayout(null);
         setBackground(Color.getHSBColor(360,100,5));
         addWindowListener(new WindowAdapter() {
             @Override
