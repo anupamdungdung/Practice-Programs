@@ -1,19 +1,236 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class calculator extends JFrame{
-    JButton b1,b2;
+    double num,ans;
+    int calculation;
+    JLabel output;
+    JTextField screen;
+    JButton b1,b2,b3,b4,b5,b6,n0,n00,n1,n2,n3,n4,n5,n6,n7,n8,n9,dot,clear,back;
     calculator()
     {
         super("Calculator");
-        b1=new JButton("Click Here");
-        b2=new JButton("Subtract");
-        b1.setBounds(100,100,100,20);
-        b2.setBounds(100,200,100,20);
+        screen=new JTextField();
+        output=new JLabel();
+        screen.setFont(new Font("Helvetica",Font.BOLD,25));
+        output.setFont(new Font("Helvetica",Font.BOLD,20));
+        clear=new JButton("C");
+        dot=new JButton(".");
+        b1=new JButton("+");
+        b2=new JButton("-");
+        b3=new JButton("*");
+        b4=new JButton("/");
+        b5=new JButton("%");
+        b6=new JButton("=");
+        n00=new JButton("00");
+        n0=new JButton("0");
+        n1=new JButton("1");
+        n2=new JButton("2");
+        n3=new JButton("3");
+        n4=new JButton("4");
+        n5=new JButton("5");
+        n6=new JButton("6");
+        n7=new JButton("7");
+        n8=new JButton("8");
+        n9=new JButton("9");
+        back=new JButton("<--");
+        screen.setBounds(40,60,300,50);
+        screen.setHorizontalAlignment(SwingConstants.RIGHT);
+        output.setBounds(40,20,300,30);
+        output.setHorizontalAlignment(SwingConstants.RIGHT);
+        clear.setBounds(220,290,50,30);
+        back.setBounds(285,240,50,30);
+        n0.setBounds(40,290,50,30);
+        n00.setBounds(100,290,50,30);
+        dot.setBounds(160,290,50,30);
+        n1.setBounds(40,140,50,30);
+        n2.setBounds(100,140,50,30);
+        n3.setBounds(160,140,50,30);
+        n4.setBounds(40,190,50,30);
+        n5.setBounds(100,190,50,30);
+        n6.setBounds(160,190,50,30);
+        n7.setBounds(40,240,50,30);
+        n8.setBounds(100,240,50,30);
+        n9.setBounds(160,240,50,30);
+        b1.setBounds(220,140,50,30);
+        b2.setBounds(285,140,50,30);
+        b3.setBounds(220,190,50,30);
+        b4.setBounds(285,190,50,30);
+        b5.setBounds(220,240,50,30);
+        b6.setBounds(285,290,50,30);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int length=screen.getText().length();
+                int number=screen.getText().length()-1;
+                String store;
+                if(length>0)
+                {
+                    StringBuilder  back=new StringBuilder(screen.getText());
+                    back.deleteCharAt(number);
+                    store=back.toString();
+                    screen.setText(store);
+                }
+            }
+        });
+        dot.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+".");
+            }
+        });
+        n1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+"1");
+            }
+        });
+        n2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+"2");
+            }
+        });
+        n3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+"3");
+            }
+        });
+        n4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+"4");
+            }
+        });
+        n5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+"5");
+            }
+        });
+        n6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+"6");
+            }
+        });
+        n7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+"7");
+            }
+        });
+        n8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+"8");
+            }
+        });
+        n9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+"9");
+            }
+        });
+        n0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+"0");
+            }
+        });
+        n00.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText(screen.getText()+"00");
+            }
+        });
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                screen.setText("");
+                output.setText("");
+            }
+        });
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                num=Double.parseDouble(screen.getText());
+                calculation=1;
+                screen.setText("");
+                output.setText(num+"+");
+            }
+        });
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                num=Double.parseDouble(screen.getText());
+                calculation=2;
+                screen.setText("");
+                output.setText(num+"-");
+            }
+        });
+        b3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                num=Double.parseDouble(screen.getText());
+                calculation=3;
+                screen.setText("");
+                output.setText(num+"*");
+            }
+        });
+        b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                num=Double.parseDouble(screen.getText());
+                calculation=4;
+                screen.setText("");
+                output.setText(num+"/");
+            }
+        });
+        b5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                num=Double.parseDouble(screen.getText());
+                calculation=5;
+                screen.setText("");
+                output.setText(num+"%");
+            }
+        });
+        b6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+                output.setText(output.getText()+Double.parseDouble(screen.getText()));
+                arithmetic_operation();
+            }
+        });
+        add(screen);
+        add(n0);
+        add(n00);
+        add(dot);
+        add(n1);
+        add(n2);
+        add(n3);
+        add(n4);
+        add(n5);
+        add(n6);
+        add(n7);
+        add(n8);
+        add(n9);
         add(b1);
         add(b2);
+        add(b3);
+        add(b4);
+        add(b5);
+        add(b6);
+        add(clear);
+        add(back);
+        add(output);
         prepareGUI();
     }
     public void prepareGUI()
@@ -28,9 +245,37 @@ public class calculator extends JFrame{
             }
         });
     }
+    public void arithmetic_operation()
+    {
+        switch (calculation)
+        {
+            case 1:
+                ans=num+Double.parseDouble(screen.getText());
+                screen.setText(Double.toString(ans));
+                break;
+            case 2:
+                ans=num-Double.parseDouble(screen.getText());
+                screen.setText(Double.toString(ans));
+                break;
+            case 3:
+                ans=num*Double.parseDouble(screen.getText());
+                screen.setText(Double.toString(ans));
+                break;
+            case 4:
+                ans=num/Double.parseDouble(screen.getText());
+                screen.setText(Double.toString(ans));
+                break;
+            case 5:
+                ans=num%Double.parseDouble(screen.getText());
+                screen.setText(Double.toString(ans));
+                break;
+
+        }
+    }
     public static void main(String[] args)
     {
         calculator ob1=new calculator();
         ob1.setVisible(true);
     }
+
 }
