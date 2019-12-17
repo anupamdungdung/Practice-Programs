@@ -1,0 +1,32 @@
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+public class stringdisplay extends Frame {
+    stringdisplay()
+    {
+        super("String");
+        prepareGUI();
+    }
+    public static void main(String[] args) {
+        stringdisplay demo = new stringdisplay();
+        demo.setVisible(true);
+    }
+    public void prepareGUI() {
+        setSize(400,400);
+
+        setBackground(Color.getHSBColor(360,100,5));
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+    }
+    public void paint(Graphics g)
+    {
+        g.setFont(new Font("Helvetica",Font.BOLD,100));
+        g.drawString("CET",95,220);
+
+    }
+}
