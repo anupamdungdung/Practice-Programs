@@ -6,28 +6,42 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class frame extends JFrame {
-    JButton click; JLabel name;
-    frame()
+    JButton click,clear; JLabel name;
+    frame(String calculator)
     {
+        Font font=new Font("Times New Roman",Font.BOLD,25);
+
         click=new JButton("Click Here");
-        name=new JLabel();
+
         click.setBounds(135,200,100,50);
         click.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent actionEvent) {
-            name.setBounds(160,100,50,20);
-            name.setText("Anupam");
-
-        }
-    });
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                name.setFont(font);
+                name.setText("Anupam");
+                name.setBounds(140,100,100,50);
+            }
+        });
+        clear=new JButton("Clear");
+        clear.setBounds(135,300,100,50);
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                name.setText("");
+            }
+        });
 
         add(click);
+        add(clear);
+        name=new JLabel();
         add(name);
+
         prepareGUI();
     }
     public void prepareGUI()
     {
         setSize(400,400);
+        setLayout(null);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -37,11 +51,7 @@ public class frame extends JFrame {
     }
     public static void main(String[] args)
     {
-        frame ob=new frame();
+        frame ob=new frame("Calculator");
         ob.setVisible(true);
-    }
-    public void paint(Graphics g)
-    {
-
     }
 }
