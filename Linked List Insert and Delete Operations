@@ -156,7 +156,13 @@ void insertNodeAtEnding()
 
     void Traverse()
     {
+        if(start==NULL)
+        {
+            printf("\nThe linked list is empty\n");
 
+        }
+        else
+        {
         temp2=start;
             printf("\nThe values in Linked List\n");
             while(temp2!=NULL)
@@ -165,6 +171,7 @@ void insertNodeAtEnding()
                 temp2=temp2->next;
             }
 
+    }
     }
     void main()
     {
