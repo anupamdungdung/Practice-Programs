@@ -1,13 +1,13 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
-int x;
+int x,c=1;
 struct node
 {
 
     int data;
     struct  node *next;
-}*start=NULL;
+}*start=NULL,*start1=NULL,*start2=NULL;
 
 struct node *createnode()
 {
@@ -45,9 +45,15 @@ void insertNodeAtEnding()
         temp1=createnode();
         printf("\nEnter the data\n");
         scanf("%d",&temp1->data);
+        if(start==NULL)
+        {
+            start=temp1;
+        }
+        else{
         temp3=start;
         start=temp1;
         temp1->next=temp3;
+        }
 
     }
     void insertAtMiddle()
@@ -59,7 +65,13 @@ void insertNodeAtEnding()
         scanf("%d",&temp1->data);
         printf("\nEnter the position\n");
         scanf("%d",&x);
-        temp2=start;
+        if(start==NULL)
+        {
+            start=temp1;
+        }
+        else
+        {
+            temp2=start;
         for(int i=1;i<x-1;i++)
         {
             temp2=temp2->next;
@@ -67,6 +79,7 @@ void insertNodeAtEnding()
         temp3=temp2->next;
         temp2->next=temp1;
         temp1->next=temp3;
+    }
     }
     void deleteAtBeginning()
     {
@@ -77,10 +90,19 @@ void insertNodeAtEnding()
         else
             {
                 temp2=start;
+                if(temp2->next==NULL)
+                {
+                    start=NULL;
+                }
+                else
+                {
                 temp3=temp2->next;
                 start=temp3;
             }
+            printf("The value that is being deleted=%d",temp2->data);
+            free(temp2);
         }
+    }
          void deleteAtEnd()
          {
              struct node *temp3;
@@ -104,7 +126,7 @@ void insertNodeAtEnding()
                 {
                     temp3->next=NULL;
                 }
-
+                printf("The value that is being deleted=%d",temp2->data);
                 free(temp2);
 
          }
@@ -128,13 +150,15 @@ void insertNodeAtEnding()
                 }
                 temp3->next=temp2->next;
          }
+         printf("The value that is being deleted=%d",temp2->data);
+         free(temp2);
          }
 
     void Traverse()
     {
 
         temp2=start;
-
+            printf("\nThe values in Linked List\n");
             while(temp2!=NULL)
             {
                 printf("%d ",temp2->data);
