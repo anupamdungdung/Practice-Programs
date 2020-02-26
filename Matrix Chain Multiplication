@@ -1,0 +1,75 @@
+package fourth_sem;
+
+import java.util.Scanner;
+
+public class matrix_chain_multiplication {
+    static void matrix_chain_order(int p[])
+    {
+        int j=0;
+        int n=p.length-1;//Number of Matrices
+        int A[]=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            A[i]=i+1;
+        }
+        int m[][]=new int[n][n];
+        int s[][]=new int[n][n];
+        for(int i=0;i<n;i++)
+        {
+                m[i][i]=0;
+        }
+        for(int l=1;l<n;l++)
+        {
+            for(int i=0;i<n-l;i++)
+            {
+                j=i+l;
+                m[i][j]= (int)Double.POSITIVE_INFINITY;
+                for(int k=i;k<j;k++)
+                {
+                    int q=m[i][k]+m[k+1][j]+(p[i]*p[k+1]*p[j+1]);
+                    if(q<m[i][j])
+                    {
+                        m[i][j]=q;
+                        s[i][j]=k;
+                    }
+                }
+            }
+        }
+        System.out.println("Scalar Multiplication Table");
+        for(int i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                System.out.print(m[i][j]+" ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        for(int i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                System.out.print(s[i][j]+" ");
+            }
+            System.out.println();
+        }
+
+    }
+    static void print_optimal_parens(int s[][],int i,int j)
+    {
+        if(i==j);
+    }
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the number of dimensions");
+        int n=sc.nextInt();
+        System.out.println("Enter the dimensions");
+        int p[]=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            p[i]=sc.nextInt();
+        }
+        matrix_chain_order(p);
+    }
+}
