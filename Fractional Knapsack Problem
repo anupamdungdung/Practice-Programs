@@ -1,0 +1,69 @@
+import java.util.*;
+import java.text.DecimalFormat;
+public class fractional_knapsack {
+    double weight[];
+    double profit[];
+    double ratio[];//(p/w)
+    double W;
+    private static DecimalFormat df2 = new DecimalFormat("#.##");
+
+    fractional_knapsack() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of items in the store: ");
+        int n = sc.nextInt();
+        System.out.println("Enter the weight and benefit of items: ");
+        weight = new double[n];
+        profit = new double[n];
+        ratio = new double[n];
+        for (int i = 0; i < n; ++i) {
+            weight[i] = sc.nextDouble();
+            profit[i] = sc.nextDouble();
+            ratio[i] = profit[i] / weight[i];
+        }
+        System.out.println("Enter the weight of the knapsack: ");
+        W = sc.nextDouble();
+    }
+
+    int getNext() {
+        double highest = 0;
+        int index = -1;
+        for (int i = 0; i < profit.length; ++i) {
+            if (ratio[i] > highest) {
+                highest = ratio[i];
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    void fill() {
+        double cW = 0; //current weight
+        double cB = 0; //current benefit
+        System.out.print("\nItems considered: ");
+
+        while (cW < W) {
+            int item = getNext();        //next highest ratio
+            if (item == -1) {
+                //No items left
+                break;
+            }
+
+        System.out.print((item+1)+" ");
+        if (cW + weight[item] <= W) {
+            cW += weight[item];
+            cB += profit[item];
+            //mark as used for the getNext() (ratio) function
+            ratio[item] = 0;
+        } else {
+            cB += (ratio[item] * (W - cW));
+            cW += (W - cW);
+            break;  //the knapsack is full
+        }
+    }
+        System.out.println("\nMax Benefit = " + df2.format(cB) + ", Max Weight = " + cW);
+}
+    public static void main(String[] args) {
+        fractional_knapsack fk = new fractional_knapsack();
+        fk.fill();
+    }
+    }
