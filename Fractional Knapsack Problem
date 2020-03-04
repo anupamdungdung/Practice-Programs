@@ -42,28 +42,27 @@ public class fractional_knapsack {
         System.out.print("\nItems considered: ");
 
         while (cW < W) {
-            int item = getNext();        //next highest ratio
+            int item = getNext();//next highest ratio
             if (item == -1) {
                 //No items left
                 break;
             }
 
-        System.out.print((item+1)+" ");
-        if (cW + weight[item] <= W) {
-            cW += weight[item];
-            cB += profit[item];
-            //mark as used for the getNext() (ratio) function
-            ratio[item] = 0;
-        } else {
-            cB += (ratio[item] * (W - cW));
-            cW += (W - cW);
-            break;  //the knapsack is full
+            System.out.print((item+1)+" ");
+            if (cW + weight[item] <= W) {
+                cW += weight[item];
+                cB += profit[item];
+                ratio[item] = 0;//mark as used for the getNext() (ratio) function
+            } else {
+                cB += (ratio[item] * (W - cW));
+                cW += (W - cW);
+                break;  //the knapsack is full
+            }
         }
-    }
         System.out.println("\nMax Benefit = " + df2.format(cB) + ", Max Weight = " + cW);
-}
+    }
     public static void main(String[] args) {
         fractional_knapsack fk = new fractional_knapsack();
         fk.fill();
     }
-    }
+}
