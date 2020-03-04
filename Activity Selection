@@ -4,10 +4,9 @@ public class activity_selection {
         int i, j;
         arrange(s, f, a, n);
         System.out.print("Following activities are selected : ");
-
-        // The first activity always gets selected
+        
         i = 0;
-        System.out.print(a[i] + " ");
+        System.out.print(a[i] + " ");// The first activity always gets selected
 
         // Consider rest of the activities
         for (j = 1; j < n; j++)
@@ -52,7 +51,6 @@ public class activity_selection {
         int f[] =  {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
         int a[] =  {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
         int n = s.length;
-
         printMaxActivities(s, f, a,n);
     }
 }
