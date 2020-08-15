@@ -1,0 +1,61 @@
+import java.util.*;
+
+public class FlyodMarshall {
+    final static int INF = 9999;
+
+
+    static void floydWarshall(int graph[][], int nV) {
+        int i, j, k;
+        int matrix[][] = new int[nV][nV];
+
+        for (i = 0; i < nV; i++) {
+            for (j = 0; j < nV; j++) {
+                matrix[i][j] = graph[i][j];
+            }
+        }
+        for (k = 0; k < nV; k++) {
+            for (i = 0; i < nV; i++) {
+                for (j = 0; j < nV; j++) {
+                    if (matrix[i][k] + matrix[k][j] < matrix[i][j]) {
+                        matrix[i][j] = matrix[i][k] + matrix[k][j];
+                    }
+                }
+            }
+        }
+        printMatrix(matrix, nV);
+    }
+
+    private static void printMatrix(int[][] matrix, int nV) {
+        int i, j, k;
+        System.out.println("Resulting matrix is:");
+        for (i = 0; i < nV; i++) {
+            for (j = 0; j < nV; j++) {
+                if (matrix[i][j] == INF) {
+                    System.out.print("INF ");
+                } else
+                    System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int nV;
+        int i, j;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter no. of vertices");
+        nV = sc.nextInt();
+        int graph[][] = new int[nV][nV];
+        System.out.println("Enter edge cost");
+        System.out.println("Enter 9999 if there is no edge between two vertices");
+        System.out.println("Enter 0 as cost to same vertex");
+        for (i = 0; i < nV; i++) {
+            for (j = 0; j < nV; j++) {
+                graph[i][j] = sc.nextInt();
+            }
+        }
+        FlyodMarshall a=new FlyodMarshall();
+        a.floydWarshall(graph,nV);
+    }
+}
+
