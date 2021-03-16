@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class bresenhamsLineDrawingAlgo {
+    public static void calculatethepoints(int x1, int y1, int x2, int y2) {
+        int temp1 = x1, temp2 = y1, p, i = 0;
+        int delx = x2 - x1, dely = y2 - y1;
+        p = 2 * dely - delx;
+        while (i < delx) {
+            if (p < 0) {
+                temp1 = temp1 + 1;
+                System.out.println(i + " " + p + " " + temp1 + "," + temp2);
+                p = p + 2 * dely;
+
+            } else {
+                temp1 = temp1 + 1;
+                temp2 = temp2 + 1;
+                System.out.println(i + " " + p + " " + temp1 + "," + temp2);
+                p = p + 2 * dely - 2 * delx;
+
+            }
+            i++;
+        }
+    }
+
+    public static void main(String[] args) {
+        int x1, x2, y1, y2;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter x1");
+        x1 = sc.nextInt();
+        System.out.println("Enter y1");
+        y1 = sc.nextInt();
+        System.out.println("Enter x2");
+        x2 = sc.nextInt();
+        System.out.println("Enter y2");
+        y2 = sc.nextInt();
+
+        calculatethepoints(x1, y1, x2, y2);
+    }
+}
