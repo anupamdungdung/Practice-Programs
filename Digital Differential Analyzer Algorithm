@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class digital_differential_analyzer_algorithm {
+    public void CalculateThePoints(double x1, double y1, double x2, double y2) {
+        double temp1 = x1, temp2 = y1;
+        double m = (y2 - y1) / (x2 - x1);
+        System.out.println((int) temp1 + " " + (int)temp2);
+
+        if (m < 1) {
+            while (temp1 != x2 && temp2 != y2) {
+                temp1 = temp1 + 1;
+                temp2 = (temp2 + m);
+                System.out.println((int)Math.round(temp1) + " " + (int)Math.round(temp2));
+            }
+        } else if (m > 1) {
+            while (temp1 != x2 && temp2 != y2) {
+                temp1 = temp1 + (1 / m);
+                temp2 = temp2 + 1;
+                System.out.println((int)Math.round(temp1)+ " " + (int)Math.round(temp2));
+            }
+        } else {
+            while (temp1 != x2 && temp2 != y2) {
+                temp1 = temp1 + 1;
+                temp2 = temp2 + 1;
+                System.out.println((int)temp1 + " " + (int)temp2);
+            }
+        }
+
+
+    }
+
+    public static void main(String[] args) {
+        int x1, x2, y1, y2;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter x1");
+        x1 = sc.nextInt();
+        System.out.println("Enter y1");
+        y1 = sc.nextInt();
+        System.out.println("Enter x2");
+        x2 = sc.nextInt();
+        System.out.println("Enter y2");
+        y2 = sc.nextInt();
+        digital_differential_analyzer_algorithm ob = new digital_differential_analyzer_algorithm();
+
+        ob.CalculateThePoints(x1, y1, x2, y2);
+    }
+}
