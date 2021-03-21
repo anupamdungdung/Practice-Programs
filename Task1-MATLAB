@@ -1,0 +1,24 @@
+clear all;
+close all;
+clc;
+
+r=input("Enter radius of circle");
+theta=linspace(0,2*pi,100);
+x=r*cos(theta);
+y=r*sin(theta);
+plot(x,y);
+hold on;
+axis([-8 8 -8 8]);
+for i=1:1:4
+  r1=r+rand;
+  x=r1*cos(theta);
+  y=r1*sin(theta);
+  plot(x,y);
+  hold on;
+  end
+
+title('Circle of given radius');
+grid on;
+xlabel('X-axis');
+ylabel('Y-axis');
+hold off;
