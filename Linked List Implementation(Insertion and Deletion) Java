@@ -1,0 +1,131 @@
+class Node {
+    public String data;
+    public Node next;
+
+    public Node(String data) {
+        this.data = data;
+    }
+}
+
+class LinkedList {
+
+    public Node head;
+    public Node tail;
+
+    public void addAtEnd(String data) {
+        //Create a new node
+        Node node = new Node(data);
+
+        //Check if the list is empty,
+        //if yes, make the node as the head and thae tail
+        if (this.head == null)
+            this.head = this.tail = node;
+        else {
+            //If the list is not empty, add the element at the end
+            this.tail.next = node;
+            this.tail = node;
+        }
+
+    }
+
+    public void traverse() {
+        Node n = head;
+        while (n != null) {
+            System.out.println(n.data + " ");
+            n = n.next;
+        }
+    }
+
+    public void addAtBeginning(String data) {
+        Node node = new Node(data);
+        if (this.head == null)
+            this.head = this.tail = node;
+        else {
+            node.next = this.head;
+            this.head = node;
+
+        }
+    }
+
+    public void addAtMiddle(String data, int position) {
+        Node node = new Node(data);//Node to be added
+        //For traversal
+        int i = 1;
+        if (this.head == null) this.head = this.tail = node;
+        else {
+            Node n = head;
+            while (i < position - 1) {
+                n = n.next;
+                i++;
+            }
+            node.next = n.next;
+            n.next = node;
+        }
+    }
+
+    public void deleteAtBeginning() {
+        Node n = head;
+        if (n == null) {
+            System.out.println("The Linked List is empty");
+        } else {
+            this.head = head.next;
+        }
+    }
+
+    public void deleteAtEnd() {
+        Node n = head;
+        Node temp=head;
+        if (n == null) {
+            System.out.println("The Linked List is empty");
+        }
+        else{
+            while(n.next!=null){
+                temp=n;
+                n=n.next;
+            }
+            temp.next=null;
+        }
+    }
+    public void deleteAtMiddle(int position){
+        Node n=head;
+        Node temp=head;
+        int i=1;
+        if (n == null) {
+            System.out.println("The Linked List is empty");
+        }
+        else{
+            while(i<position){
+                temp=n;
+                n=n.next;
+                i++;
+            }
+            temp.next=n.next;
+        }
+    }
+}
+
+class LinkedListJava {
+    public static void main(String args[]) {
+        LinkedList list = new LinkedList();
+        list.addAtEnd("Milan");
+        list.addAtEnd("Venice");
+        list.addAtEnd("Munich");
+        list.addAtEnd("Vienna");
+        System.out.println("The elements in the linked list");
+        list.addAtBeginning("India");
+// 		System.out.println("Element inserted at the beginning of the Linked List");
+        list.traverse();
+        System.out.println("Element inserted at the middle of the Linked List");
+        list.addAtMiddle("New York", 3);
+        list.traverse();
+//        System.out.println("Element deleted from the beginning of the Linked List");
+//        list.deleteAtBeginning();
+//        System.out.println("Element deleted from the end of the Linked List");
+//        list.deleteAtEnd();
+        System.out.println("Element deleted from the middle of the Linked List");
+        list.deleteAtMiddle(3);
+        list.traverse();
+
+
+    }
+}
