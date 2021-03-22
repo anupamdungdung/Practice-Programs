@@ -58,6 +58,7 @@ class LinkedList {
                 n = n.next;
                 i++;
             }
+            if (n.next == null) this.tail = node;
             node.next = n.next;
             n.next = node;
         }
@@ -74,32 +75,31 @@ class LinkedList {
 
     public void deleteAtEnd() {
         Node n = head;
-        Node temp=head;
+        Node temp = head;
         if (n == null) {
             System.out.println("The Linked List is empty");
-        }
-        else{
-            while(n.next!=null){
-                temp=n;
-                n=n.next;
+        } else {
+            while (n.next != null) {
+                temp = n;
+                n = n.next;
             }
-            temp.next=null;
+            temp.next = null;
         }
     }
-    public void deleteAtMiddle(int position){
-        Node n=head;
-        Node temp=head;
-        int i=1;
+
+    public void deleteAtMiddle(int position) {
+        Node n = head;
+        Node temp = head;
+        int i = 1;
         if (n == null) {
             System.out.println("The Linked List is empty");
-        }
-        else{
-            while(i<position){
-                temp=n;
-                n=n.next;
+        } else {
+            while (i < position) {
+                temp = n;
+                n = n.next;
                 i++;
             }
-            temp.next=n.next;
+            temp.next = n.next;
         }
     }
 }
