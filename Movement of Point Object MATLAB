@@ -1,0 +1,17 @@
+%Draw the movement of point objects
+clc;
+clear all;
+x=linspace(-6,6,1000); %equally spaced
+y=sin(x);
+plot(x,y);
+axis manual;
+ax=gca; %Current axis
+h=hgtransform('parent',ax);
+hold on;
+plot(x(1),y(1),'o','parent',h);
+hold off;
+for k=2:length(x)
+  m=makehgtransform('translate',x(k)-x(1),y(k)-y(1),'o');
+  h.matrix=m;
+  drawnow;
+  end
