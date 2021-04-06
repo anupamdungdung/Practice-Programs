@@ -1,0 +1,22 @@
+clc;
+clear all;
+x=3;
+y=3;
+n=10;
+for j=1:1:20
+  figure(1);
+  plot(x,y,'+');
+  r=0.2;
+  title('Drawing expanding circles');
+  axis([0 1 0 1]*100);
+  for i=1:1:n
+    th=0:pi/25:2*pi;
+    xunit=r*cos(th)+x;
+    yunit=r*sin(th)+y;
+    h=plot(xunit,yunit);
+    %parse(0.2);
+    r=r+rand*0.01;
+    
+  endfor
+  
+ endfor
