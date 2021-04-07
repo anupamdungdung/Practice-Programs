@@ -1,0 +1,31 @@
+import math
+a=[[0,0]]
+b=[[10,2]]
+c=[[7,4]]
+degree=30;
+radians=math.radians(degree)
+sin=round(math.sin(radians),2)
+cos=round(math.cos(radians),2)
+result1=[[0,0]]
+result2=[[0,0]]
+result3=[[0,0]]
+r=[[cos,sin],[-sin,cos]]
+for i in range(len(a)):
+    for j in range(len(r[0])):
+        for k in range(len(r)):
+            result1[i][j]+=round(a[i][k]*r[k][j],2)
+for i in range(len(a)):
+    for j in range(len(r[0])):
+        for k in range(len(r)):
+            result2[i][j]+=round(b[i][k]*r[k][j],2)
+for i in range(len(a)):
+    for j in range(len(r[0])):
+        for k in range(len(r)):
+            result3[i][j]+=round(c[i][k]*r[k][j],2)
+for i in result1:
+    print("A'=",i)
+for i in result2:
+    print("B'=",i)
+for i in result3:
+    print("C'=",i)
+
