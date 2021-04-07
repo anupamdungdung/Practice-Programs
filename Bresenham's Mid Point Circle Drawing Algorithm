@@ -1,0 +1,26 @@
+if input()== 'i':
+    r=int(input("Enter radius\n"))
+else:
+    r=float(input("Enter radius\n"))
+x = 0
+y = r
+tempx = x
+tempy = y
+if type(r) == int:
+    p = 1 - r
+    print(p)
+else:
+    p = (5.0 / 4.0) - (r*1.0)
+    print(p)
+while tempx<tempy:
+    if p < 0:
+        tempx = tempx + 1
+        print(tempx, tempy)
+        p = p + 2 * tempx + 1
+    else:
+        tempx = tempx + 1
+        tempy = tempy - 1
+        print(tempx, tempy)
+        p = p + 2 * tempx + 1 - 2 * tempy
+
+
